@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import com.example.demo.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 
@@ -30,5 +31,9 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAllUsers() {
         TypedQuery<User> query = entityManager.createQuery("SELECT u FROM users u", User.class);
         return query.getResultList();
+    }
+
+    public User findById(Long id) {
+        return entityManager.find(User.class, id);
     }
 }
